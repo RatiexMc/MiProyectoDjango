@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ libro.nombre }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS para estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- epub.js y JSZip para renderizar archivos EPUB -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
+
+    <style>
+        /* Estilo para el visor EPUB */
+        #visor-epub {
+            height: 600px;
+            min-height: 600px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <div class="container mt-5">
+
+        <!-- Título del libro -->
+        <h2 class="text-primary text-center mb-4">{{ libro.nombre }}</h2>
+
+        <!-- Detalles del libro -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <p><strong>Autor:</strong> {{ libro.autor.nombre }}</p>
+                <p><strong>Fecha de lanzamiento:</strong> {{ libro.fecha_lanzamiento }}</p>
+                <p><strong>Géneros:</strong>
+                    {% for genero in libro.generos.all %}
+                        <span class="badge bg-secondary">{{ genero.nombre }}</span>
+                    {% endfor %}
+                </p>
+                <p><strong>Archivo EPUB:</strong></p>
+                <a href="{{ libro.archivo.url }}" class="btn btn-outline-primary" target="_blank">
+                    Descargar Libro
+                </a>
+            </div>
+        </div>
+
+        <!-- Visor EPUB -->
+        <div class="mt-5">
+            <h4 class="text-center">📖 Vista previa del archivo EPUB</h4>
+            <div id="visor-epub"></div>
+
+            <!-- Navegación -->
+            <div class="text-center mt-3">
+                <button id="prev" class="btn btn-outline-secondary me-2">⬅ Anterior</button>
+                <button id="next" class="btn btn-outline-secondary">Siguiente ➡</button>
+            </div>
+        </div>
+
+        <!-- Reseñas de usuarios -->
+        <div class="mt-5">
+            <h4 class="text-center text-success mb-4">Reseñas de lectores</h4>
+
+            {% if reseñas %}
+                <div class="list-group">
+                    {% for r in reseñas %}
+                        <div class="list-group-item mb-2 shadow-sm">
+                            <strong>{{ r.usuario.username }}</strong>
+                            <span class="badge bg-warning text-dark">Calificación: {{ r.calificacion }}/5</span>
+                            <p class="mt-2 mb-1">{{ r.resenia|default:"(Sin comentario)" }}</p>
+                            <small class="text-muted">Publicado el {{ r.fecha|date:"d/m/Y H:i" }}</small>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-center text-muted">Aún no hay reseñas para este libro.</p>
+            {% endif %}
+
+            <!-- Botón para dejar una reseña -->
+            <div class="text-center mt-4">
+                <a href="{% url 'calificar_libro' libro.id %}" class="btn btn-outline-success">Dejar una reseña</a>
+            </div>
+        </div>
+
+        <!-- Botón para volver a la biblioteca -->
+        <div class="text-center mt-4">
+            <a href="{% url 'biblioteca_libros' %}" class="btn btn-secondary">Volver a la biblioteca</a>
+        </div>
+    </div>
+
+    <!-- Script para visualizar EPUB -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const book = ePub("{{ libro.archivo.url }}");
+            const rendition = book.renderTo("visor-epub", {
+                width: "100%",
+                height: 600
+            });
+
+            rendition.display().catch(error => {
+                console.error("❌ Error al mostrar el libro EPUB:", error);
+                document.getElementById("visor-epub").innerHTML =
+                    "<p class='text-danger text-center mt-3'>No se pudo visualizar el libro. Por favor, descárgalo directamente.</p>";
+            });
+
+            document.getElementById("prev").addEventListener("click", function () {
+                rendition.prev();
+            });
+
+            document.getElementById("next").addEventListener("click", function () {
+                rendition.next();
+            });
+        });
+    </script>
+</body>
+
+</html>

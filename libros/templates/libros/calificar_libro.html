@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calificar libro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <div class="container mt-5">
+
+        <h2 class="text-primary text-center mb-4">Dejar una reseña para "{{ libro.nombre }}"</h2>
+
+        <div class="card shadow">
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Reseña (opcional)</label>
+                        {{ form.resenia }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Calificación (1 a 5)</label>
+                        {{ form.calificacion }}
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">Enviar reseña</button>
+                        <a href="{% url 'ver_libro' pk=libro.id %}" class="btn btn-outline-secondary ms-2">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'biblioteca_libros' %}" class="btn btn-secondary">Volver a la biblioteca</a>
+        </div>
+    </div>
+</body>
+</html>

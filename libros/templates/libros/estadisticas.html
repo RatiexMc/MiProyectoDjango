@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Estadísticas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Estadísticas de la Biblioteca</h2>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% else %}
+        <!-- Datos generales extraídos de las reseñas -->
+        <p><strong>Género más guardado:</strong> {{ genero_mas }} ({{ genero_mas_count }})</p>
+        <p><strong>Género con menos libros:</strong> {{ genero_menos }} ({{ genero_menos_count }})</p>
+        <p><strong>Libro con mejor calificación:</strong> {{ book_best }} ({{ book_best_count }})</p>
+        <p><strong>Libro con peor calificación:</strong> {{ book_worst }} ({{ book_worst_count }})</p>
+        <p><strong>Usuario con más reseñas:</strong> {{ top_user }} ({{ top_user_count }})</p>
+        <!-- Galería de gráficos -->
+        <div class="row">
+            <!-- Libros por género -->
+            <div class="col-md-6 mb-4">
+                <img class="img-fluid" src="data:image/png;base64,{{ grafico_genero }}" alt="Gráfico género">
+            </div>
+            <!-- Calificación media por libro -->
+            <div class="col-md-6 mb-4">
+                <img class="img-fluid" src="data:image/png;base64,{{ grafico_calificacion }}" alt="Gráfico calificaciones">
+            </div>
+            <!-- Cantidad de reseñas por usuario -->
+            <div class="col-md-6 mb-4">
+                <img class="img-fluid" src="data:image/png;base64,{{ grafico_usuarios }}" alt="Gráfico usuarios">
+            </div>
+            <!-- Top de libros con más reseñas -->
+            <div class="col-md-6 mb-4">
+                <img class="img-fluid" src="data:image/png;base64,{{ grafico_top_reviews }}" alt="Top reseñas">
+            </div>
+            <!-- Promedio de calificaciones por autor -->
+            <div class="col-md-6 mb-4">
+                <img class="img-fluid" src="data:image/png;base64,{{ grafico_autor }}" alt="Promedio por autor">
+            </div>
+            <!-- Promedio de calificaciones por género -->
+            <div class="col-md-6 mb-4">
+                <img class="img-fluid" src="data:image/png;base64,{{ grafico_genero_prom }}" alt="Promedio por género">
+            </div>
+        </div>
+        {% if books_no_rating %}
+            <!-- Lista de libros que aún no han recibido reseñas -->
+            <h5 class="mt-4">Libros sin calificar:</h5>
+            <ul>
+            {% for libro in books_no_rating %}
+                <li>{{ libro }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+    <div class="mt-4">
+        <a href="{% url 'biblioteca_libros' %}" class="btn btn-secondary">Volver a la biblioteca</a>
+    </div>
+</div>
+</body>
+</html>

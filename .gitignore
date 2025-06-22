@@ -1,0 +1,16 @@
+.vscode/
+.idea/
+# Entornos virtuales
+venv/
+.env
+
+# Archivos temporales y compilados
+*.pyc
+__pycache__/
+
+# Archivos de usuario y sistema
+.DS_Store
+*.log
+.DS_Storevenv/
+# Archivos de base de datos locales
+*.sqlite3
