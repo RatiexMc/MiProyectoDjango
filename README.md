@@ -1,15 +1,90 @@
 # 📚 Proyecto Django - Biblioteca de Libros
 
-Este proyecto es una plataforma web desarrollada con Django y PostgreSQL que permite a los usuarios registrarse, iniciar sesión y gestionar una biblioteca digital. Incluye funcionalidades para subir libros, modificar libros, eliminar libros en formato `.epub`, clasificarlos por autor y género, calificarlos y visualizarlos desde una interfaz web con opción a descarga y a través de una API REST protegida.
+Esta plataforma web permite gestionar una biblioteca digital con libros en formato `.epub`. Los usuarios pueden registrarse, iniciar sesión y realizar acciones como subir, editar o eliminar libros. También dispone de una API REST protegida para integraciones externas.
+
 
 ## Características principales:
 
-- 🔐 Registro y autenticación de usuarios (vía sesión y JWT)
-- 📖 Subida de libros en formato `.epub`
-- 🧑‍💼 Creación dinámica de autores y géneros desde el formulario web
-- 🔎 Búsqueda de libros y vista de biblioteca
-- 🧩 API REST para integración con frontend y herramientas externas
-- 🗂️ Base de datos PostgreSQL
+- Registro y autenticación de usuarios (vía sesión y JWT)
+- Búsqueda de libros por autor y nombre
+- Gestión de libros, autores y libros
+- Subida de libros en formato `.epub`
+- Calificación y reseñas de libros
+- Estadísticas con gráficos a partir de `conversor.py`
+
+  ## Pasos para probar el proyecto
+1. Asegúrate de tener **Python**, **pip** y **PostgreSQL** instalados.
+2. Clona o descarga el repositorio y abre una terminal en la carpeta raíz.
+3. Crea un entorno virtual:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # En Windows usa `venv\Scripts\activate`
+   ```
+4. Instala las dependencias:
+   ```bash
+   pip install -r requirements.txt
+   ```
+5. Crea la base de datos en PostgreSQL y configura los parámetros en `miApp/settings.py`.
+6. Ejecuta las migraciones:
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+7. Crea un superusuario:
+   ```bash
+   python manage.py createsuperuser
+   ```
+8. (Opcional) Carga usuarios de ejemplo:
+   ```bash
+   python manage.py populate_users
+   ```
+9. Ejecuta `python conversor.py` para generar estadísticas iniciales.
+10. Inicia el servidor de desarrollo con `python manage.py runserver` y accede a `http://127.0.0.1:8000/`.
+![](https://github.com/RatiexMc/MiProyectoDjango/img_readme/AUTORES.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Estadísticas y análisis
 
