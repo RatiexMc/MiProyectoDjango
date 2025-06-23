@@ -266,19 +266,42 @@ def estadisticas_view(request):
     grafico_genero = base64.b64encode(img1.read()).decode('utf-8')
 
     # Gráfico de calificación media por libro
-    fig2, ax2 = plt.subplots()
-    if 'calificacion_media' in df.columns:
-        colores = plt.cm.tab20.colors[:len(df)]
-        df.sort_values('calificacion_media', ascending=False).set_index('nombre')['calificacion_media'].plot(kind='bar', ax=ax2, color=colores)
-    ax2.set_xlabel('Libro')
-    ax2.set_ylabel('Calificación promedio')
-    ax2.set_title('Calificación media por libro')
-    fig2.tight_layout()
+
+
+# Gráfico de top libros mejor calificados (con colores distintos por barra)
+    fig2, ax2 = plt.subplots(figsize=(10, 5))
+
+    if 'calificacion_media' in df.columns and not df.empty:
+        top_n = 10
+        df_top = df.sort_values('calificacion_media', ascending=False).head(top_n)
+        nombres = df_top['nombre']
+        calificaciones = df_top['calificacion_media']
+    
+        colores = plt.cm.tab10.colors  # Paleta de 10 colores diferentes
+        barras = ax2.barh(nombres[::-1], calificaciones[::-1], color=colores)
+
+        ax2.set_xlabel('Calificación promedio')
+        ax2.set_title(f'Top {top_n} libros mejor calificados')
+        ax2.set_xlim(0, 5)
+        ax2.tick_params(axis='y', labelsize=9)
+
+        # Mostrar valores numéricos
+        for i, barra in enumerate(barras):
+            ancho = barra.get_width()
+            ax2.text(ancho + 0.05, barra.get_y() + barra.get_height()/2,
+                f'{calificaciones.iloc[::-1].iloc[i]:.1f}', va='center', fontsize=8)
+
+        fig2.tight_layout()
+
     img2 = BytesIO()
-    fig2.savefig(img2, format='png')
+    fig2.savefig(img2, format='png', dpi=150)
     plt.close(fig2)
     img2.seek(0)
     grafico_calificacion = base64.b64encode(img2.read()).decode('utf-8')
+
+
+
+
 
     # Gráfico de número de reseñas por usuario
     fig3, ax3 = plt.subplots()
