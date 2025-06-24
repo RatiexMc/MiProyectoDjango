@@ -64,7 +64,7 @@ urllib3==2.4.0
    pip install -r requirements.txt
    ```
 
-5. Crea la base de datos en PostgreSQ abriendo la terminal y escribe:
+5. Crea la base de datos accediendo en PostgreSQ abriendo la terminal y escribe:
 
    ```bash
    CREATE DATABASE midbdjango;
