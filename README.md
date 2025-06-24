@@ -51,29 +51,28 @@ urllib3==2.4.0
 
 3. Crea un entorno virtual y activa el entorno virtual:
    ```bash
-   python -m venv venv
-   `.\venv\Scripts\activate` # En Windows
+    python -m venv venv
+    .\venv\Scripts\activate # En Windows
    ```
 
 4. Instala las dependencias que se crearon con:
    ```bash
    pip freeze > requirements.txt
    ```
-
-5. Se pueden instalar con:
+   Se pueden instalar con:
    ```bash
    pip install -r requirements.txt
    ```
 
-6. Crea la base de datos en PostgreSQ abriendo la terminal y escribe:
+5. Crea la base de datos en PostgreSQ abriendo la terminal y escribe:
 
    ```bash
    CREATE DATABASE midbdjango;
    ```
    ![Descripción de la imagen](https://github.com/RatiexMc/MiProyectoDjango/blob/master/img_readme/CREATEDATABASE.png)
 
-7. Configura los parámetros en `miApp/settings.py`. 
-   ```bash
+6. Configura los parámetros en `miApp/settings.py`. 
+   ```python
     DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql',
@@ -113,8 +112,13 @@ urllib3==2.4.0
 ```http
 POST http://127.0.0.1:8000/api/auth/register/
 ```
-```bash
-<<EL CODIGO DEL REGISTRO DE LIBROS VA AQUI>>
+```python
+...
+# Listar y crear libros
+class LibroListCreateView(generics.ListCreateAPIView):
+    queryset = Libro.objects.all()
+    serializer_class = LibroSerializer
+...
 ```
 ![Descripción de la imagen](https://github.com/RatiexMc/MiProyectoDjango/blob/master/img_readme/CREAR%20UN%20LIBRO.png
 )
@@ -124,8 +128,13 @@ POST http://127.0.0.1:8000/api/auth/register/
 ```http
 GET http://127.0.0.1:8000/api/libros/libros/
 ```
-```bash
-<<EL CODIGO DEL LISTADO DE LIBROS VA AQUI>>
+```python
+...
+# Listar y crear libros
+class LibroListCreateView(generics.ListCreateAPIView):
+    queryset = Libro.objects.all()
+    serializer_class = LibroSerializer
+...
 ```
 ![Descripción de la imagen](https://github.com/RatiexMc/MiProyectoDjango/blob/master/img_readme/LISTAR%20TODOS%20LOS%20LIBROS.png
 )
