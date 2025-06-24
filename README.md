@@ -154,11 +154,30 @@ Algunas de ellas son:
 
 
 
-## Uso de `conversor.py`
-Este script exporta la información de la base de datos a CSV y carga los archivos en `pandas` para generar estadísticas y gráficos. Ejecuta:
-```bash
-python conversor.py
-```
+## Documentación del Scripts 'conversor.py'
+
+¿Porque utilizamos pandas?
+
+## Resultados y Explicación de los Gráficos
+-Resultados
+![Descripción de la imagen](https://github.com/RatiexMc/MiProyectoDjango/blob/master/img_readme/CREAR%20UN%20LIBRO.png
+)
+
+--Género más guardado
+--Género menos libros
+--Libro con mejor calificación
+--Libro con peor calificación
+--Usuarios con más reseñas
+--Libros sin calificar
+
+
+
+#### Libros por género
+#### Top 10 libros mejor calificados
+#### Cantidad de reseñas por usuarios
+#### Top libros con reseñas
+#### Promedio de calificaciones por autores
+#### Promedio de calificaciones por géneros
 
 
 
@@ -173,11 +192,10 @@ python conversor.py
 
 
 
+## Licencias de los paquetes utilizados:
+Este proyecto esta sujeta bajo los términos de la licencia MIT y utiliza las siguientes bibliotecas de código abierto sujeto a licencias propias
+Puedes utilizar, copiar, editar y distribuir este software con o sin fines comerciales, siempre que tengas aviso del copyright original
 
-
-
-
-## Licencias de dependencias
 | Paquete | Versión | Licencia |
 |---------|---------|---------|
 | Django | 5.2.1 | BSD License |
