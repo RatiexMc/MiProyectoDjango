@@ -21,7 +21,6 @@ id,nombre,autor,generos,fecha_lanzamiento,vistas,calificacion_media,calificacion
 21,V,Crispin,Narrativa,1984-02-07,2,2.0,1
 22,La trampa del paraiso,Crispin,Poesía,1992-03-02,2,5.0,1
 23,La maniobra hutt,Crispin,Ciencia Ficción,1993-05-08,2,3.0,2
-24,El hijo de ayer,Crispin,Fantasía,1994-05-21,2,2.6666666666666665,3
 25,Amanecer Rebelde,Crispin,Narrativa,1996-11-08,2,3.0,1
 26,Alien Resurreccion,Crispin,Cultura,2005-12-30,2,3.6666666666666665,3
 27,La era del Ingenio,Grayling,Sabiduria,2010-10-07,2,3.0,1
@@ -40,7 +39,7 @@ id,nombre,autor,generos,fecha_lanzamiento,vistas,calificacion_media,calificacion
 43,Las armerias de Isher,Van Vogt,Historia,2006-01-05,2,5.0,1
 44,Los fabricante de armas,Van Vogt,Suspenso,2001-01-08,2,4.5,2
 46,Los jugadores de No-A,Van Vogt,Historia,2002-01-08,2,3.0,1
-47,Los moustros del mar,Van Vogt,Fantasía,2002-07-07,2,3.0,1
+47,Los moustros del mar,Van Vogt,Fantasía,2002-07-07,2,3.0,2
 48,Razas del Futuro,Van Vogt,Ciencia Ficción,2003-02-01,2,3.0,1
 49,Relatos,Van Vogt,Cultura,2003-01-08,2,2.0,4
 50,Slan,Van Vogt,Cultura,2003-02-01,2,3.5,2
@@ -56,3 +55,6 @@ id,nombre,autor,generos,fecha_lanzamiento,vistas,calificacion_media,calificacion
 60,Tu princesa Yo superheroe,Keller,Poesía,2000-11-19,2,3.6666666666666665,3
 61,Hormigas salvajes y suicidas,Porta,Terror,2009-12-01,2,4.0,3
 63,Los ingenieros del caos,Guiliano Da Empoli,Ciencia Ficción,2004-11-14,2,0.0,0
+24,El hijo de ayer,Crispin,Suspenso,1994-05-21,2,2.6666666666666665,3
+67,Tiempos de furia,Adan Medellin,Poesía,2003-04-05,2,0.0,0
+68,Judith Furste,Dilan Arco,Suspenso,1990-02-01,2,0.0,0
